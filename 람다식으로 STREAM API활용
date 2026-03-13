@@ -1,0 +1,42 @@
+import java.util.*;
+import java.util.stream.Collectors;
+
+class Candidate {
+    String name;
+    int score;
+
+    Candidate(String name, int score){
+        this.name = name;
+        this.score = score;
+    }
+    public String getName(){return name;}
+    public int getScore(){return score;}
+}
+
+public class Practice {
+    public static void main(String[] args){
+        List<Candidate> candidates = Arrays.asList( //여러개의 객체를 하나의 리스트로 묶어줌
+                new Candidate("김철수", 85),
+                new Candidate("이영희", 72),
+                new Candidate("박지성", 90),
+                new Candidate("최민수", 65),
+                new Candidate("정유미", 88)
+        );
+        //Stream API = 데이터를 공장의 컨베이너 벨트처럼 관리
+
+        List<String> passers = candidates.stream() //벨트 위에 데이터 올리기
+                .filter(c -> c.getScore() >=80)// 80점 미만 걸러내기
+                .sorted(Comparator.comparing(Candidate::getName))//이름순대로 줄 세우기
+                .map(Candidate::getName)// 사람 전체가 아닌 '이름'표만 떼기
+                .collect(Collectors.toList()); // 결과물을 박스(list)에 담기
+
+        System.out.println("---감사직 7급 합격자 명단 ---");
+        passers.forEach(System.out::println);
+    }
+}
+/*
+.filter(): 조건에 맞는 데이터만 통과시킵니다. 여기서 c -> ...는 람다식인데, "응시자 c를 가져와서 점수가 80점 이상인지 확인해!"라는 뜻입니다.
+.sorted(): 정렬입니다. Candidate::getName은 "Candidate 객체의 getName 메소드를 기준으로 정렬해"라는 뜻의 메소드 참조 방식입니다.
+.map(): 데이터 변환입니다. Candidate 객체 덩어리에서 우리가 필요한 건 '이름'뿐이므로, 이름(String)만 쏙 뽑아냅니다.
+.collect(): 스트림은 한 번 흐르면 사라지는 일회용 벨트입니다. 그래서 마지막에 다시 리스트 형태로 저장해 주는 과정이 필요합니다.
+ */
