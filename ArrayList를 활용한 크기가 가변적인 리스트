@@ -1,0 +1,41 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Department {
+    String name;
+    int budget;
+    boolean isAudited;
+
+    public Department(String name, int budget){
+        this.name = name;
+        this.budget = budget;
+        this.isAudited = false;
+    }
+    public void runAudit() {
+        this.isAudited = true;
+        System.out.println(name+ "부서의 회계 감사를 완료했습니다.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        List<Department> auditList = new ArrayList<>(); //ArrayList : 배열고 달리 크기가 가변적인 리스트. 
+
+        auditList.add(new Department("홍보팀", 5));
+        auditList.add(new Department("개발팀", 50));
+        auditList.add(new Department("재무팀", 20));
+
+        System.out.println("감사 시스템을 가동합니다");
+
+        for(Department dept : auditList){
+            System.out.println("\n현재 검토중: "+ dept.name + " (예산: " + dept.budget + "억)");
+            if(dept.budget>=20){
+                System.out.println("예산이 20억 이상이므로 정밀 감사가 필요합니다.");
+                dept.runAudit();
+            }else {
+                System.out.println("소규모 예산 부서입니다. 약식 감사로 대체합니다.");
+            }
+        }
+        System.out.println("\n--- 오늘의 감사 업무 종료 ---");
+    }
+}
