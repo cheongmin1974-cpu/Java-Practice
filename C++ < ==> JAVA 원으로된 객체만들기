@@ -1,0 +1,53 @@
+/*
+<<<C++>>> 
+*/
+
+#include<iostream>
+using namespace std;
+
+
+class Circle {
+public:
+	int r;
+	double getArea();
+};
+double Circle::getArea() {
+	return 3.14 * r * r;
+}
+
+int main() {
+	Circle donut;
+	donut.r = 1;
+	double area = donut.getArea();
+	cout << "도넛면적" << area << endl;
+
+	Circle pizza;
+	pizza.r = 30;
+	area = pizza.getArea();
+	cout << "피자면적" << area << endl;
+}
+
+/*
+<<<자바>>>
+*/
+
+class Circle {
+    public int r;
+
+    public double getArea() {
+        return 3.14*r*r;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Circle donut = new Circle();
+        donut.r = 1;
+        double area = donut.getArea();
+        System.out.println("도넛면적: "+ area);
+
+        Circle pizza = new Circle();
+        pizza.r = 30;
+        area = pizza.getArea();
+        System.out.println("피자면적: " + area);
+    }
+}
