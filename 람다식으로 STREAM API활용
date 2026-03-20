@@ -30,7 +30,7 @@ public class Practice {
                 .map(Candidate::getName)// 사람 전체가 아닌 '이름'표만 떼기
                 .collect(Collectors.toList()); // 결과물을 박스(list)에 담기
 
-        System.out.println("---감사직 7급 합격자 명단 ---");
+        System.out.println("--- 합격자 명단 ---");
         passers.forEach(System.out::println);
     }
 }
